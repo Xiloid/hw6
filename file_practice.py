@@ -9,8 +9,8 @@ import re
 
 from pathlib import Path
 path = Path('files/file_practice.txt').resolve()
-'''with open(path, 'w') as f:
-    f.write('Starting practice with files')
+with open(path, 'w') as f:
+    f.write('Starting practice with files\n')
     f.close()
 """
     2.
@@ -54,36 +54,24 @@ with open(path2, "a") as f:               # ...поэтому снова отк�
     Прочесть весь файл и вывести содержимое
 """
 with open(path, 'a+') as f:
-    read_again = len(f.read())
+    read_again = int(len(f.readline()))
     if read_again % 2 == 0:
-        f.write(' the end')
+        f.write('the end')
     else:
-        f.write(' bye')
+        f.write('bye')
     f.seek(0)
     print(f.read())
-    f.close()'''
+    f.close()
 """
     5.
     В средину файла file_practice.txt вставить строку " *some inserted text* "
     (средина - имеется в виду средина текста)
 """
 with open(path, 'r+') as f:
+    read_str = f.readline()
+    str_half = int(len(read_str) / 2)
+    str_result = read_str[:str_half] + ' *some inserted text* ' + read_str[str_half:]
     f.seek(0)
-    list = []
-    list = f.readline()
-#    str_int = int(len(f.readline()) / 2)
-    a = "*some inserted text*"
-    list.insert(14, "*some inserted text*")
-#    str = "".join(str_str)
-    print(sss)
-#    print(f.readline())
-#    celaya = len(f.read())
-#    polovina = int(celaya / 2)
-#    print(f.tell())
-#    print(f.seek(polovina, 2))
-#    print(celaya, polovina)
-#    read_again2 = int(len(f.readline()) / 2)
-#    print(read_again2)
-#    f.seek(read_again2)
-#    f.write(' *some inserted text* ')
+    f.write(str_result)
     f.close()
+    # не удалось победить удаление "the end" при вставке и записи текста в строку :(
