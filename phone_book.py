@@ -10,12 +10,30 @@
     4. +380501234564 - Имя
 """
 import re
+import string
 from pathlib import Path
 in_path = Path('files/phone_book.txt').resolve()
 out_path = Path('files/edited_phone_book.txt').resolve()
 
+
 def main():
-    pass
+    name = phone = None
+    with open(in_path, 'r') as f:
+        f.seek(0)
+        for line in f.readlines():
+            f.seek(0)
+            list_name = re.findall(r'[a-zA-Z]', line)
+            list_phone = re.findall(r'\d', line)
+            name = ''.join(list_name)
+            phone = ''.join(list_phone)
+            name = name.capitalize()
+            if name.find('M') == 0 or name.rfind('a') == len(name) - 1:
+
+
+'''
+def do_name(name):
+    with open(in_path, 'w') as f:
+        pass
 
 
 def jnjnj():
@@ -24,21 +42,8 @@ def jnjnj():
         for line in f.readlines():
             pass
 
-def reading():
-    with open(in_path, 'r') as f:
-        for line in f.readlines():
-
-#            new_str = line[:pass_length]
-            string = f.readline()
-            f.seek(0)
-            list_name = re.findall(r'\d', string)
-            list_phone = re.findall(r'[a-zA-Z]', string)
-            name = ''.join(list_name)
-            phone = ''.join(list_phone)
-            return phone, name
 
 
-'''
 def phone():
     while True:
 #        phone_input = input('Введите номер телефона: ')
