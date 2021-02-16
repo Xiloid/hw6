@@ -30,6 +30,7 @@ def main():
                 whole_string = str(counter) + '. ' + good_phone + ' - ' + n_capitalized
                 counter += 1
                 write_func(whole_string)
+        print('Телефонная книга отформатирована.')
         f.close()
 
 
@@ -45,7 +46,7 @@ def phone_func(phone):
         if char.isdigit():
             digits += char
     if len(digits) >= 9:
-        phone_num = '+380' + digits[-9:]
+        phone = '+380' + digits[-9:]
         return phone
 
 
