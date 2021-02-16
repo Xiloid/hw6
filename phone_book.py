@@ -17,49 +17,36 @@ out_path = Path('files/edited_phone_book.txt').resolve()
 
 
 def main():
-    name = phone = None
     with open(in_path, 'r') as f:
-        f.seek(0)
+        counter = 1
         for line in f.readlines():
-            f.seek(0)
-            list_name = re.findall(r'[a-zA-Z]', line)
-            list_phone = re.findall(r'\d', line)
-            name = ''.join(list_name)
-            phone = ''.join(list_phone)
-            name = name.capitalize()
-            if name.find('M') == 0 or name.rfind('a') == len(name) - 1:
+            in_name = re.findall(r'[a-zA-Z]', line)
+            in_phone = re.findall(r'\d', line)
+            out_name = ''.join(in_name)
+            out_phone = ''.join(in_phone)
+            n_capitalized = out_name.capitalize()
+            if n_capitalized.find('M') == 0 or n_capitalized.rfind('a') == len(n_capitalized) - 1:
+                good_phone = phone_func(out_phone)
+                whole_string = str(counter) + '. ' + good_phone + ' - ' + n_capitalized
+                counter += 1
+                write_func(whole_string)
+        f.close()
 
 
-'''
-def do_name(name):
-    with open(in_path, 'w') as f:
-        pass
+def write_func(name):
+    with open(out_path, 'a') as f:
+        print(name, file=f)
+        f.close()
 
 
-def jnjnj():
-    with open(in_path, 'r') as f:
-        f.seek(0)
-        for line in f.readlines():
-            pass
-
-
-
-def phone():
-    while True:
-#        phone_input = input('Введите номер телефона: ')
-        digits = ''
-        for char in phone_input:
-            if char.isdigit():
-                digits += char
-        if len(digits) >= 9:
-            phone_input = '380' + digits[-9:]
-        else:
-            print('Неверный формат номера!')
-            continue
-#        print(f'Телефон "{phone_input}" записан.')
-#        return phone_input
-
-'''
+def phone_func(phone):
+    digits = ''
+    for char in phone:
+        if char.isdigit():
+            digits += char
+    if len(digits) >= 9:
+        phone_num = '+380' + digits[-9:]
+        return phone
 
 
 if __name__ == "__main__":
